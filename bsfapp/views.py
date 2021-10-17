@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Contact
-from .form import ContactForm
+from django.http import HttpResponse
+from .models import Profile
+from .form import ProfileForm
 
 # Create your views here.
 def index(request):
-    contacts = Contact.objects.all()
-    return render(request, 'index.html', {'contacts': contacts})
+    profiles = Profile.objects.all()
+    return render(request, 'index.html', {'profiles': profiles})
 
 def login(request):
     return render(request, 'login.html')
@@ -14,18 +15,25 @@ def login(request):
 def signup(request):
     return render(request, 'signup.html')
 
-def contact_form(request):
+def profile_form(request):
+    profile = Profile.objects.get(user = request.user.id)
     submitted = False
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/contact_form?submitted=True')
     else:
-        form = ContactForm
+        form = ProfileForm
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'form.html', {'form': form, 'submitted': submitted})
+
+    context = {
+        'profile':profile,
+        'form':form,
+        'submitted': submitted,
+    }
+    return render(request, 'profile.html', context)
 
 def base(request):
     return render(request, 'base.html')

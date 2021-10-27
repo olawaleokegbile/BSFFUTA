@@ -74,6 +74,24 @@ TEMPLATES = [
     },
 ]
 
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True 
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'bsffutaacc@gmail.com'
+SERVER_EMAIL = 'bsffutaacc@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bsffutaacc@gmail.com'
+EMAIL_HOST_PASSWORD = 'whdcqnuvwthuvizt'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = False
+
 WSGI_APPLICATION = 'bsffuta.wsgi.application'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

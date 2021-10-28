@@ -83,11 +83,11 @@ ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'bsffutaacc@gmail.com'
-SERVER_EMAIL = 'bsffutaacc@gmail.com'
+DEFAULT_FROM_EMAIL = 'bsffutaict@gmail.com'
+SERVER_EMAIL = 'bsffutaict@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bsffutaacc@gmail.com'
-EMAIL_HOST_PASSWORD = 'whdcqnuvwthuvizt'
+EMAIL_HOST_USER = 'bsffutaict@gmail.com'
+EMAIL_HOST_PASSWORD = 'epknkmknhkrvxzhx'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USER_SSL = False

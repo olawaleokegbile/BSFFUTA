@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile{% endblock title %}
+
+
+{% block content %}
+
+<!--Date Picker-->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('.datepicker').datepicker();
+        });
+        </script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile Update</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-3">
+            <img src="{{profile.avatar.url}}" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <p class="card-text">Provide some additional/newest info about you</p>
+                <form action="" method="POST" class="ui form" enctype='multipart/form-data'>
+                  {% csrf_token %}
+                  {{form.as_p}}
+            </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<!-- <div class="ui modal mymodal">
+  <i class="close icon"></i>
+  <div class="header">
+    Profile Update
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img src="{{profile.avatar.url}}">
+    </div>
+    <div class="description">
+      <div class="ui header">Provide some additional/newest info about you</div>
+      <form action="" method="POST" class="ui form" enctype='multipart/form-data'>
+          {% csrf_token %}
+          {{form.as_p}}
+    </div>
+  </div>
+  <div class="actions">
+    <button type='submit' class="ui positive right labeled icon button">
+      Update
+      <i class="checkmark icon"></i>
+    </button>
+    </form>
+  </div>
+</div> -->
+
+<!-- segment for the page message -->
+<div class="ui segment">
+  
+  <div class="ui grid">
+      <div class='row'>
+        <div class='four wide column'></div>
+        <div class='ten wide column'>
+          {% if submitted %}
+          <div class="alert alert-success" style="padding-top:10px;" role="alert">
+            Profile Update Successful!
+          </div>
+          {% endif %}
+          <h3>My profile: {{request.user}}</h3>
+        </div>
+      </div>
+     
+    <div class='row'>
+      <div class='four wide column'></div>
+      <div class='four wide column'>
+        <img class="ui medium rounded image" src="{{profile.avatar.url}}">
+        <div class="row mt-5">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Update your Profile</button>
+        </div>
+      </div>
+      <div class='six wide column'>
+        <table class="ui table">
+            <tbody>
+              <tr>
+                <td>username</td>
+                <td>{{profile.user}}</td>
+              </tr>
+              <tr>
+                <td>first name</td>
+                <td>{{profile.first_name}}</td>
+              </tr>
+              <tr>
+                <td>last name</td>
+                <td>{{profile.last_name}}</td>
+              </tr>
+              <tr>
+                <td>level</td>
+                <td>{{profile.level}}</td>
+              </tr>
+              <tr>
+                <td>department</td>
+                <td>{{profile.department}}</td>
+              </tr>
+              <tr>
+                <td>unit</td>
+                <td>{{profile.unit}}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+  
+  
+  
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+<!--
+    <center>
+    <h1>Update Profile</h1>
+    <br/><br/>
+    {% if submitted %}
+        Registration Successful!!!
+
+    {% else %}
+
+    <form action="" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Submit"  class="btn btn-secondary">
+
+    </form>
+    {% endif %}
+    </center>
+-->

@@ -1,0 +1,41 @@
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+<title>Sign Up</title>
+<link rel = "icon" href = "{% static 'img/bsf.jpg' %}" 
+            type = "image/x-icon">
+
+
+<body style="background-color: #17a2b8b8;">
+  <div>
+      <h3 class="text-center text-white pt-5">Bsffuta</h3>
+      <h3 class="text-center text-white pt-5">Sign Up</h3>
+      <div class="container">
+        <div class="column md-6" style="background-color:#17a2b8;">
+          <div id="login-row" class="row justify-content-center align-items-center">
+            <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
+          </div>
+          <div id="login-row" class="row justify-content-center align-items-center">
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <button class="btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
+

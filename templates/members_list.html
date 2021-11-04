@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block title %}My Profile{% endblock title %}
+
+
+{% block content %}
+
+<div class="ui segment">
+  
+  <div class="ui grid">
+      <div class='row'>
+        <div class='four wide column'></div>
+        <div class='ten wide column'>
+            <p class="text-success">Please enter levels 100 to 500 to sort members with level</p>
+            <p class="text-success">Enter just one name of the area to sort members with areas</p>
+            <p class="text-success">Enter unit name to sort members with units</p>
+            <p class="text-success">Enter 'male' to view all brothers</p>
+            <p class="text-success">Enter 'female' to view all sisters</p>
+            <form class="" method="POST" style="padding-bottom:10px;" action="{% url 'members-list' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input class="form-control form-control-light" type="text" placeholder="Enter sort key here" aria-label="query" name="query">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+                        </svg>
+                    </span>
+                </div>
+            </form>
+            {% if query %}
+                <h3 class="h3">
+                    &#128077; {{request.user}}, you sorted by {{query}} 
+                </h3>
+            {% else %}
+                <h3 class="h3">
+                    Enter a correct sort key. Check the instructions above
+                </h3>
+            {% endif %}
+        </div>
+      </div>
+     
+    <div class='row'>
+
+    <!--Semantic UI table-->
+      <div class='three wide column'></div>
+      <div class='thirteen wide column'>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Department</th>
+                    <th>Unit</th>
+                    <th>Area</th>
+                    <th>Adress</th>
+                    <th>Contact</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in members %}
+                <tr>
+                    <td data-label="Name">{{i.last_name}} {{i.first_name}}</td>
+                    <td data-label="Level">{{i.level}}</td>
+                    <td data-label="Department">{{i.department}}</td>
+                    <td data-label="Unit">{{i.unit}}</td>
+                    <td data-label="Area">{{i.area}}</td>
+                    <td data-label="Adress">{{i.address}}</td>
+                    <td data-label="Contact">{{i.contact}}</td>
+                    <td data-label="DOB">{{i.birthday|date:"M d"}}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+  
+  
+  
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}
+

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 
 {% block title %}My Profile{% endblock title %}
 
@@ -41,8 +42,10 @@
         </div>
       </div>
       <div class="modal-footer">
+        {% buttons %}
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Update</button>
+        {% endbuttons %}
                 </form>
       </div>
     </div>
@@ -83,9 +86,9 @@
         <div class='four wide column'></div>
         <div class='ten wide column'>
           {% if submitted %}
-          <div class="alert alert-success" style="padding-top:10px;" role="alert">
-            Profile Update Successful!
-          </div>
+            <div class="alert alert-success" style="padding-top:10px;" role="alert">
+              Profile Update Successful!
+            </div>
           {% endif %}
           <h3>My profile: {{request.user}}</h3>
         </div>

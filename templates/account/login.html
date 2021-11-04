@@ -1,6 +1,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load bootstrap5 %}
 {% load account socialaccount %}
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 <link href="{% static 'style.css' %}" rel="stylesheet">
 
 <title>Sign In</title>
-<link rel = "icon" href = "{% static 'img/bsf.jpg' %}" 
+<link rel = "icon" href = "{% static 'img/bsf-1.png' %}" 
             type = "image/x-icon">
 
 
@@ -21,18 +22,20 @@
 
 {% comment %} {% block content %} {% endcomment %}
 
-<body style="background-color: #17a2b8b8;">
+<body style="background-color: #22b228;">
+<center><img src="{% static 'img/bsf-1.png' %}" width="200"></center>
   <div>
-    <h3 class="text-center text-white pt-5">Bsffuta</h3>
-    <h3 class="text-center text-white pt-5">Sign In</h3>
+    <h3 class="text-center text-white pt-1" style="font-family:Harlow Solid Italic;"><b>BSFFUTA</b></h3>
+    <h3 class="text-center pt-3" style="font-family: Freestyle Script; color: white;"><b>Sign In</b></h3>
     <div class="container">
-      <div class="column md-6" style="background-color:#17a2b8;">
+      <center>    
+      <div class="column md-8" style="background-color:white; width:520px; height:320px; padding-bottom:5px; box-shadow: 20px;">
           <div id="login-row" class="row justify-content-center align-items-center">
                 {% get_providers as socialaccount_providers %}
 
                 {% if socialaccount_providers %}
                 <p>{% blocktrans with site.name as site_name %}Please sign in with one
-                of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                of your existing third party accounts. Or, <a href="{{ signup_url }}"> sign up</a>
                 for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
             <div class="socialaccount_ballot">
@@ -49,7 +52,7 @@
 
             {% else %}
             <p>{% blocktrans %}If you have not created an account yet, then please
-            <a href="{{ signup_url }}" class="text-white">sign up</a> first.{% endblocktrans %}</p>
+            <a href="{{ signup_url }}" class="text-black">sign up</a> first.{% endblocktrans %}</p>
             {% endif %}
 
           </div>
@@ -66,6 +69,7 @@
               <button class="btn-primary" type="submit">{% trans "Sign In" %}</button>
             </form>
           </div>
+        </center>
       </div>
     </div>
   </div>

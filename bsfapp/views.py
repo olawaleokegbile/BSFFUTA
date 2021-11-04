@@ -7,6 +7,22 @@ from datetime import date
 
 # Create your views here.
 def index(request):
+    try:
+        profile = Profile.objects.get(user = request.user.id)
+        # profiles = Profile.objects.all()
+        # today = date.today()
+        # celebrants = []
+        # for i in profiles:
+        #     if i.birthday == today:
+        #         celebrants.append(i)
+        # context = {
+        #     'profiles':profiles,
+        #     'celebrants':celebrants,
+        #     'profile':profile,
+        # }
+        # return render(request, 'index.html', context)
+    except:
+        return render(request, 'index.html')
     profiles = Profile.objects.all()
     today = date.today()
     celebrants = []
@@ -16,6 +32,7 @@ def index(request):
     context = {
         'profiles':profiles,
         'celebrants':celebrants,
+        'profile':profile,
     }
     return render(request, 'index.html', context)
 
@@ -26,25 +43,32 @@ def index(request):
 #     return render(request, 'signup.html')
 
 def profile_form(request):
-    profile = Profile.objects.get(user = request.user.id)
-    submitted = False
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile) #Note that request.FILES is the second positional argument used to get the image upload on the profile update to be saved in the form
-        if form.is_valid():
-            submitted = True
-            form.save()
-            #return HttpResponseRedirect('/profile_form')
-    else:
-        form = ProfileForm
-        if 'submitted' in request.GET:
-            submitted = True
+    # profile = Profile.objects.create(user=self.user, 
+    #         first_name = self.user.first_name, 
+    #         last_name = self.user.last_name, 
+    #         email_address = self.user.email)
+    try:
+        profile = Profile.objects.get(user = request.user.id)
+        submitted = False
+        if request.method == 'POST':
+            form = ProfileForm(request.POST, request.FILES, instance=profile) #Note that request.FILES is the second positional argument used to get the image upload on the profile update to be saved in the form
+            if form.is_valid():
+                submitted = True
+                form.save()
+                return HttpResponseRedirect('/profile_form')
+        else:
+            form = ProfileForm
+            if 'submitted' in request.GET:
+                submitted = True
 
-    context = {
-        'profile':profile,
-        'form':form,
-        'submitted': submitted,
-    }
-    return render(request, 'profile.html', context)
+        context = {
+            'profile':profile,
+            'form':form,
+            'submitted': submitted,
+        }
+        return render(request, 'profile.html', context)
+    except Exception as e:
+        return render(request, 'profile.html')
 
 def base(request):
     return render(request, 'base.html')
@@ -72,3 +96,105 @@ def search_members(request):
             return render(request, 'search.html')
     else:
         return render(request, 'search.html')
+
+def members_list(request):
+    if request.method == "POST":
+        query = str(request.POST['query']).lower()
+        
+        try:
+            if "100"in query:
+                members = Profile.objects.filter(level__contains='1')
+            elif "200" in query:
+                members = Profile.objects.filter(level__contains='2')
+            elif "300" in query:
+                members = Profile.objects.filter(level__contains='3')
+            elif "400" in query:
+                members = Profile.objects.filter(level__contains='4')
+            elif "500" in query:
+                members = Profile.objects.filter(level__contains='final')
+            elif "bible" in query:
+                members = Profile.objects.filter(unit__contains='Bible')
+            elif "prayer" in query:
+                members = Profile.objects.filter(unit__contains='Prayer')
+            elif "publicity" in query:
+                members = Profile.objects.filter(unit__contains='Publicity')
+            elif "organizing" in query:
+                members = Profile.objects.filter(unit__contains='Organizing')
+            elif "ushering" in query:
+                members = Profile.objects.filter(unit__contains='Ushering')
+            elif "choir" in query:
+                members = Profile.objects.filter(unit__contains='Choir')
+            elif "academic" in query:
+                members = Profile.objects.filter(unit__contains='Academic')
+            elif "drama" in query:
+                members = Profile.objects.filter(unit__contains='Drama')
+            elif "welfare" in query:
+                members = Profile.objects.filter(unit__contains='Welfare')
+            elif "evangelism" in query:
+                members = Profile.objects.filter(unit__contains='Evangelism')
+            elif query=="female":
+                members = Profile.objects.filter(gender__startswith='fe')
+            elif query=="male":
+                members = Profile.objects.filter(gender__startswith='ma') 
+            elif "apatapiti" in query:
+                members = Profile.objects.filter(area__contains='Apatapiti')
+            elif "west" in query:
+                members = Profile.objects.filter(area__contains='West')
+            elif "stateline" in query:
+                members = Profile.objects.filter(area__contains='Stateline')  
+            elif "akindeko" in query:
+                members = Profile.objects.filter(area__contains='Akindeko')
+            elif "jibowu" in query:
+                members = Profile.objects.filter(area__contains='Jibowu') 
+            elif "male" in query:
+                members = Profile.objects.filter(area__contains='New Hostel male') 
+            elif "female" in query:
+                members = Profile.objects.filter(area__contains='female') 
+            elif "road" in query:
+                members = Profile.objects.filter(area__contains='Road')
+            elif "secretariat" in query:
+                members = Profile.objects.filter(area__contains='Secretariat')
+            elif "north" in query:
+                members = Profile.objects.filter(area__contains='North')
+            elif "zion" in query:
+                members = Profile.objects.filter(area__contains='Zion')
+            elif "jadesola" in query:
+                members = Profile.objects.filter(area__contains='Jadesola')
+            elif "adeniyi" in query:
+                members = Profile.objects.filter(area__contains='Adeniyi')
+            elif "abiola" in query:
+                members = Profile.objects.filter(area__contains='Abiola')
+            elif "wesco" in query:
+                members = Profile.objects.filter(area__contains='WESCO')
+            elif "futascoops" in query:
+                members = Profile.objects.filter(area__contains='FUTASCOOPS')
+            elif "akad" in query:
+                members = Profile.objects.filter(area__contains='Akad')
+            elif "auditorium" in query:
+                members = Profile.objects.filter(area__contains='Auditorium')
+            elif "cassava" in query:
+                members = Profile.objects.filter(area__contains='Cassava')
+            elif "oritaobele" in query:
+                members = Profile.objects.filter(area__contains='Oritaobele')
+            elif "embassy" in query:
+                members = Profile.objects.filter(area__contains='Embassy')
+            elif "aba" in query:
+                members = Profile.objects.filter(area__contains='Aba')
+            elif "redemption" in query:
+                members = Profile.objects.filter(area__contains='Redemption')
+            elif query=="":
+                members = Profile.objects.all()
+              
+            else:
+                raise Exception("Empty string")
+
+            context = {
+            'query':query,
+            'members':members,
+            }
+            return render(request, 'members_list.html', context)
+        except Exception:
+            return render(request, 'members_list.html')
+    else:
+        query = ""
+        return render(request, 'members_list.html', {'query':query,})

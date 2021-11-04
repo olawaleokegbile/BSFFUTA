@@ -15,26 +15,30 @@
             type = "image/x-icon">
 
 
-<body style="background-color: #17a2b8b8;">
+<body style="background-color: #22b228;">
+<center><img src="{% static 'img/bsf-1.png' %}" width="200"></center>
+
   <div>
-      <h3 class="text-center text-white pt-5">Bsffuta</h3>
-      <h3 class="text-center text-white pt-5">Sign Up</h3>
+      <h3 class="text-center text-white pt-1" style="font-family:Harlow Solid Italic;"><b>BSFFUTA</b></h3>
+      <h3 class="text-center pt-3" style="font-family: Freestyle Script; color: white;"><b>Sign In</b></h3>
       <div class="container">
-        <div class="column md-6" style="background-color:#17a2b8;">
-          <div id="login-row" class="row justify-content-center align-items-center">
-            <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
+        <center>
+          <div class="column md-8" style="background-color:white; width:520px; height:320px; padding-bottom:5px; box-shadow: 20px;">
+            <div id="login-row" class="row justify-content-center align-items-center">
+              <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
+            </div>
+            <div id="login-row" class="row justify-content-center align-items-center">
+              <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+              </form>
+            </div>
           </div>
-          <div id="login-row" class="row justify-content-center align-items-center">
-            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button class="btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
-            </form>
-          </div>
-        </div>
+        </center>
       </div>
   </div>
 </body>

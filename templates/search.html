@@ -35,8 +35,7 @@
                                                     <p class="card-text">Level: {{i.level}}</p>
                                                     <p class="card-text">Unit: {{i.unit}}</p>
                                                     <p class="card-text">Address: {{i.address}}, {{i.area}}</p>
-                                                    <p class="card-text">Birthday: {{i.birthday}}</p>
-                                                    <p class="card-text"><small class="text-muted">Bsffuta celebrates today's celebrant</small></p>
+                                                    <p class="card-text">Birthday: {{i.birthday|date:"M d"}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -54,7 +53,7 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                            <div class="col-md-4" style="padding-top:10px; background-color:#7e9484;">
+                            <div class="col-md-4" style="padding-top:10px;">
                                 <div class="card" style="width: 25rem;">
                                     <img src="{% static 'img/session_theme.jpeg' %}" class="card-img-top" alt="...">
                                     <div class="card-body">

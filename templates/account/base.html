@@ -26,8 +26,8 @@
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        <li><a href="{% url 'account_login' %}" style="color:white;">Sign In</a></li>
+        <li><a href="{% url 'account_signup' %}" style="color:white;">Sign Up</a></li>
         {% endif %}
       </ul>
     </div>

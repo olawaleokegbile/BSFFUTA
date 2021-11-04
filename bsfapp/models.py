@@ -17,7 +17,7 @@ class Profile(models.Model):
     # Prayer_Unit = 'Prayer Unit'
 
     UNIT_CHOICES = [
-        ('No Unit', 'No Unit',),
+        ('No Unit', 'No Unit'),
         ('Bible Study Unit', 'Bible Study Unit'),
         ('Welfare Unit', 'Welfare Unit'),
         ('Evangelism Unit', 'Evangelism Unit'),
@@ -31,7 +31,7 @@ class Profile(models.Model):
     ]
 
     AREA_CHOICES = [
-        ('Apatapiti', 'Apatapiti',),
+        ('Apatapiti', 'Apatapiti'),
         ('West Gate', 'West Gate'),
         ('Stateline', 'Stateline'),
         ('Akindeko', 'Akindeko'),

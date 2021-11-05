@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load bootstrap5 %}
+{% load django_bootstrap5 %}
 {% load account socialaccount %}
 
 <!DOCTYPE html>
@@ -61,12 +62,13 @@
 
             <form class="login" method="POST" action="{% url 'account_login' %}">
               {% csrf_token %}
-              {{ form.as_p }}
+              {% comment %} {{ form.as_p }} {% endcomment %}
+              {% bootstrap_form form %}
               {% if redirect_field_value %}
               <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
               {% endif %}
               <a class="button secondary text-white" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-              <button class="btn-primary" type="submit">{% trans "Sign In" %}</button>
+              <button class="btn-primary align-items-center" type="submit">{% trans "Sign In" %}</button>
             </form>
           </div>
         </center>

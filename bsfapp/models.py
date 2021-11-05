@@ -71,7 +71,7 @@ class Profile(models.Model):
         ('female', 'female'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField('First Name', max_length=100, null='False')
     last_name = models.CharField('Last Name', max_length=100, null='False')
     gender = models.CharField(max_length=50, choices= GENDER_CHOICES, default='NA', null='False')

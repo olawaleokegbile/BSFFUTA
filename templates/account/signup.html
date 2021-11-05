@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load django_bootstrap5 %}
 {% load account socialaccount %}
 
 <!DOCTYPE html>
@@ -23,14 +24,15 @@
       <h3 class="text-center pt-3" style="font-family: Freestyle Script; color: white;"><b>Sign In</b></h3>
       <div class="container">
         <center>
-          <div class="column md-8" style="background-color:white; width:520px; height:320px; padding-bottom:5px; box-shadow: 20px;">
+          <div class="column md-8" style="background-color:white; width:520px; height:420px; padding-bottom:5px;">
             <div id="login-row" class="row justify-content-center align-items-center">
               <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
             </div>
             <div id="login-row" class="row justify-content-center align-items-center">
               <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                {% bootstrap_form form %}
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}

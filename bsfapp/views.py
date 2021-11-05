@@ -55,7 +55,7 @@ def profile_form(request):
             if form.is_valid():
                 submitted = True
                 form.save()
-                return HttpResponseRedirect('/profile_form')
+                return HttpResponseRedirect('/my_profile')
         else:
             form = ProfileForm
             if 'submitted' in request.GET:

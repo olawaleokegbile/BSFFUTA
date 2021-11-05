@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    'bsfapp',
+    'bsfapp.apps.BsfappConfig',
     'django.contrib.sites',
     
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'bootstrap5',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [

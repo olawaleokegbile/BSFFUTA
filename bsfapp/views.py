@@ -111,7 +111,7 @@ def members_list(request):
             elif "400" in query:
                 members = Profile.objects.filter(level__contains='4')
             elif "500" in query:
-                members = Profile.objects.filter(level__contains='final')
+                members = Profile.objects.filter(level__contains='Final')
             elif "bible" in query:
                 members = Profile.objects.filter(unit__contains='Bible')
             elif "prayer" in query:

@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from .models import Profile
 from .form import ProfileForm
 from datetime import date
+from django.core.mail import send_mail, EmailMessage
+
 
 # Create your views here.
 def index(request):

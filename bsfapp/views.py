@@ -29,6 +29,46 @@ def index(request):
     for i in profiles:
         if i.birthday == today:
             celebrants.append(i)
+
+    #This is birthday email section
+    #This section allows for automatic sending of birthday messages to all members' emails and
+    #the celebrant's email
+    if celebrants:
+        
+        for j in celebrants:
+            name = str(j.first_name)+" "+str(j.last_name)
+            email = j.email_address
+            phone = j.phone_number
+            subject = 'CELEBRATE WITH '+str(name)
+            celebrant_subject = 'HAPPY BIRTHDAY '+str(name)
+
+            data = {'name':name, 'email':email, 'phone':phone, 'subject':subject, 'celebrant_subject':celebrant_subject}
+
+            message = '''
+                It's the birthday of a rare gem.
+                The Joyous Family celebrates {} on this special day.
+
+                Say a word of prayer for {} and ensure to send your wishes.
+                
+            '''.format(data['name'], data['name'])
+            celebrant_message = '''
+                Dear {},
+
+                We celebrate you on this very special day and we pray that you continually abound in joy.
+                Many happy returns
+
+
+
+                Cheers!
+                From the Joyous Family
+            '''.format(data['name'])
+            #send_mail(data['subject'], message, 'stemedgeinitiative@gmail.com', ['rasholajuwon@gmail.com'], fail_silently=False)
+            msg = EmailMessage(data['subject'], message, to=[i.email_address for i in profiles])
+            msg.send()
+            celebrant_msg = EmailMessage(data['celebrant_subject'], celebrant_message, to=[data['email']])
+            celebrant_msg.send()
+    #Email section ended
+
     context = {
         'profiles':profiles,
         'celebrants':celebrants,

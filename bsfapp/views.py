@@ -32,6 +32,27 @@ def index(request):
         if i.birthday == today:
             celebrants.append(i)
 
+
+    context = {
+        'profiles':profiles,
+        'celebrants':celebrants,
+        'profile':profile,
+    }
+    return render(request, 'index.html', context)
+
+# def login(request):
+#     return render(request, 'login.html')
+
+# def signup(request):
+#     return render(request, 'signup.html')
+
+def bd_emails(request):
+    profiles = Profile.objects.all()
+    today = date.today()
+    celebrants = []
+    for i in profiles:
+        if i.birthday == today:
+            celebrants.append(i)
     #This is birthday email section
     #This section allows for automatic sending of birthday messages to all members' emails and
     #the celebrant's email
@@ -70,19 +91,11 @@ def index(request):
             celebrant_msg = EmailMessage(data['celebrant_subject'], celebrant_message, to=[data['email']])
             celebrant_msg.send()
     #Email section ended
-
     context = {
-        'profiles':profiles,
         'celebrants':celebrants,
-        'profile':profile,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'bd_emails.html', context)
 
-# def login(request):
-#     return render(request, 'login.html')
-
-# def signup(request):
-#     return render(request, 'signup.html')
 
 def profile_form(request):
     # profile = Profile.objects.create(user=self.user, 

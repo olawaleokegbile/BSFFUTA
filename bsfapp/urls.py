@@ -8,4 +8,5 @@ urlpatterns = [
     path('my_profile', views.profile_form, name='profile-form'),
     path('search_members', views.search_members, name='search-members'),
     path('all_members', views.members_list, name='members-list'),
+    path('bd_emails', views.bd_emails, name='bd-emails'),
 ]

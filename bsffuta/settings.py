@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary_storage
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)*ry8xs84138cxm0dd(h*7#xyee(%51f+c&enz(lm251gao#ei'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'bsfapp.herokuapp.com', 'bsffuta.herokuapp.com']
 #ALLOWED_HOSTS = []
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'bsfapp.apps.BsfappConfig',
     'django.contrib.sites',
-    
+    'cloudinary_storage',
 
     'allauth',
     'allauth.account',
@@ -168,6 +169,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR/'media'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'baptist-student-fellowship',
+    'API_KEY': '647927947157127',
+    'API_SECRET': 'y9kUXrd96Gs0KHjbjbVDifDAlBo'
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

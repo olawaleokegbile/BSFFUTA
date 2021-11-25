@@ -9,7 +9,7 @@ DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'gender', 'email_address', 'level', 'department', 'unit', 'area', 'address', 'phone_number', 'birthday', 'avatar')        
+        fields = ('first_name', 'last_name', 'gender', 'email_address', 'level', 'department', 'unit', 'unit2', 'area', 'address', 'phone_number', 'birthday', 'avatar')        
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),

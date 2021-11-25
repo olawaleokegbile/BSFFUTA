@@ -30,6 +30,20 @@ class Profile(models.Model):
         ('Prayer Unit', 'Prayer Unit')
     ]
 
+    UNIT2_CHOICES = [
+        ('No Unit', 'No Unit'),
+        ('Bible Study Unit', 'Bible Study Unit'),
+        ('Welfare Unit', 'Welfare Unit'),
+        ('Evangelism Unit', 'Evangelism Unit'),
+        ('Publicity Unit', 'Publicity Unit'),
+        ('Organizing Unit', 'Organizing Unit'),
+        ('Ushering Unit', 'Ushering Unit'),
+        ('Choir Unit', 'Choir Unit'),
+        ('Academic Unit', 'Academic Unit'),
+        ('Drama Unit', 'Drama Unit'),
+        ('Prayer Unit', 'Prayer Unit')
+    ]
+
     AREA_CHOICES = [
         ('Apatapiti', 'Apatapiti'),
         ('West Gate', 'West Gate'),
@@ -53,6 +67,7 @@ class Profile(models.Model):
         ('Embassy', 'Embassy'),
         ('Aba Area', 'Aba Area'),
         ('Redemption Area', 'Redemption Area'),
+        ('Rotsam/Equity Area', 'Rotsam/Equity Area'),
         ('Other', 'Other')
     ]
 
@@ -79,6 +94,7 @@ class Profile(models.Model):
     level = models.CharField(max_length=50, choices= LEVEL_CHOICES, default='Other', null='False')
     department = models.CharField('Department', max_length=100, null='False', default='NA')
     unit = models.CharField(max_length=50, choices= UNIT_CHOICES, default='No Unit', null='False')
+    unit2 = models.CharField(max_length=50, choices= UNIT2_CHOICES, default='No Unit', null='False')
     area = models.CharField(max_length=50, choices= AREA_CHOICES, default='Other', null='False')    
     address = models.CharField('Address', max_length=50, null='False', default='NA')
     phone_number = models.CharField('Phone Number', max_length=25, null='False', default='NA')

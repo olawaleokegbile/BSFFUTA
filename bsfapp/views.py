@@ -237,6 +237,10 @@ def members_list(request):
                 members = Profile.objects.filter(area__contains='Aba')
             elif "redemption" in query:
                 members = Profile.objects.filter(area__contains='Redemption')
+            elif "rotsam" in query:
+                members = Profile.objects.filter(area__contains='Rotsam')
+            elif "equity" in query:
+                members = Profile.objects.filter(area__contains='Equity')
             elif query=="":
                 members = Profile.objects.all()
               

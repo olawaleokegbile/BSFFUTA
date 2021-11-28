@@ -26,10 +26,11 @@ def index(request):
     except:
         return render(request, 'index.html')
     profiles = Profile.objects.all()
-    today = date.today()
+    actual_today = date.today()
+    just_today = str(actual_today)[5:]
     celebrants = []
     for i in profiles:
-        if i.birthday == today:
+        if str(i.birthday)[5:] == just_today:
             celebrants.append(i)
 
 
@@ -48,10 +49,11 @@ def index(request):
 
 def bd_emails(request):
     profiles = Profile.objects.all()
-    today = date.today()
+    actual_today = date.today()
+    just_today = str(actual_today)[5:]
     celebrants = []
     for i in profiles:
-        if i.birthday == today:
+        if str(i.birthday)[5:] == just_today:
             celebrants.append(i)
     #This is birthday email section
     #This section allows for automatic sending of birthday messages to all members' emails and

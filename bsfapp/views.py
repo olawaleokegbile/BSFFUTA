@@ -135,7 +135,6 @@ def search_members(request):
         searched = request.POST['searched']
         if len(searched)>=3 and len(searched)<=5:
             searched = searched[:3]
-            searched = searched.lower()        
         try:
             if searched=="":
                 raise Exception("Empty string")

@@ -138,10 +138,13 @@ def search_members(request):
         try:
             if searched=="":
                 raise Exception("Empty string")
-            #if Profile.objects.filter(first_name__contains=searched):
-            members = [Profile.objects.filter(first_name__contains=searched).order_by('first_name')]
+            if Profile.objects.filter(first_name__contains=searched):
+                members = [Profile.objects.filter(first_name__contains=searched).order_by('first_name')]
+                if Profile.objects.filter(last_name__contains=searched):
+                    members.extend(Profile.objects.filter(last_name__contains=searched).order_by('last_name'))
             if Profile.objects.filter(last_name__contains=searched):
-                members.extend(Profile.objects.filter(last_name__contains=searched).order_by('last_name'))
+                members = (Profile.objects.filter(last_name__contains=searched).order_by('last_name'))
+
 
             context = {
             'searched':searched,
